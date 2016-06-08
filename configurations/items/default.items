@@ -1,0 +1,4 @@
+Number InnenTemperatur  "Temperatur Innen [%.1f] °C" <temperature> { http="<[https://open.hpi.de/api/v2/stats/global.json:10000:JS(getTotal.js)]"  }
+String InnenTemperatur_Min_Formatted "Min. Temp [%s]" <temperature>
+String InnenTemperatur_Max_Formatted "Max. Temp [%s]" <temperature>
+Switch HueKette {hue="1"}
