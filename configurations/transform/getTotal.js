@@ -1,1 +1,1 @@
-JSON.parse(input).global_statistic.platform_enrollments;
+JSON.parse(input).temp;

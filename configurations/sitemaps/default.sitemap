@@ -1,10 +1,12 @@
 sitemap default label="openHPI"
-Frame label="openHPI" {
+Frame label="openHPI Demo" {
 	Text label="Raum 1" icon="firstfloor" {
-		Switch item=Lampe label="Light Switch"
-		Text item=InnenTemperatur
-		Text item=InnenTemperatur_Min_Formatted
-		Text item=InnenTemperatur_Max_Formatted
-    Chart item=InnenTemperatur period=h refresh=3600
+	// Switch item=Lampe label="Light Switch"
+	  Text item=InnenTemperatur
+	  Text item=InnenTemperatur_Min_Formatted
+	  Text item=InnenTemperatur_Max_Formatted
 	}
+	Text item=Temperature
+	Text item=Humidity
+	Text item=Rain
 }

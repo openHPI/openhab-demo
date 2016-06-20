@@ -1,4 +1,7 @@
-Number InnenTemperatur  "Temperatur Innen [%.1f] °C" <temperature> { http="<[https://open.hpi.de/api/v2/stats/global.json:10000:JS(getTotal.js)]"  }
+Number InnenTemperatur  "Temperatur Innen [%.1f] °C" <temperature> { http="<[https://codeocean.openhpi.de/raspberry:10000:JS(getTotal.js)]"  }
 String InnenTemperatur_Min_Formatted "Min. Temp [%s]" <temperature>
 String InnenTemperatur_Max_Formatted "Max. Temp [%s]" <temperature>
-Switch HueKette {hue="1"}
+Number Temperature   "Temperatur (Web) [%.2f °C]" <temperature>  {weather="locationId=home, type=temperature, property=current"}
+Number Humidity      "Luftfeuchtigkeit (Web) [%d %%]" <water> {weather="locationId=home, type=atmosphere, property=humidity"}
+Number Rain          "Regen (Web) [%.2f mm/h]" <rain>   {weather="locationId=home, type=precipitation, property=rain"}
+// Switch Lampe {hue="1"}

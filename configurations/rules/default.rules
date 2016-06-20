@@ -7,38 +7,37 @@ import java.util.TimeZone
 import java.text.SimpleDateFormat
 
 
-
-
 // rule "Check temp"
 // when
 // 	Item InnenTemperatur changed
 // then
 //   if(InnenTemperatur.state < 20) {
-//     //sendCommand(Lampe, ON)
+//     sendCommand(Lampe, ON)
+//     sendHttpPutRequest('http://192.168.0.10/api/BPNDCG3mDKgfhff2U8PLqXaHbA0JhykvErBCOwWv/lights/1/state', '', '{"hue": 15000,	"bri": 160, "transitiontime": 2}' )
 //   }else{
 //     //sendCommand(Lampe, OFF)
 //   }
 // end
 
-// rule "Update Temperature Min- and Max values"
-// when
-//   Item InnenTemperatur changed
-// then
-//   var Number Min
-//   var Number Max
-//   var String tmp
-//   var SimpleDateFormat df = new SimpleDateFormat( "HH:mm" )
-//
-//   if (InnenTemperatur.state instanceof DecimalType) {
-//     df = new SimpleDateFormat( "HH:mm" )
-//     Min = InnenTemperatur.minimumSince(now.toDateMidnight, "rrd4j").state as DecimalType
-//     tmp = (Math::round(Min.floatValue*10.0)/10.0) + " °C (" + df.format(InnenTemperatur.minimumSince(now.toDateMidnight, "rrd4j").timestamp) + ")"
-//     postUpdate(InnenTemperatur_Min_Formatted, tmp)
-//     Max = InnenTemperatur.maximumSince(now.toDateMidnight, "rrd4j").state as DecimalType
-//     tmp = (Math::round(Max.floatValue*10.0)/10.0) + " °C (" + df.format(InnenTemperatur.maximumSince(now.toDateMidnight, "rrd4j").timestamp) + ")"
-//     postUpdate(InnenTemperatur_Max_Formatted, tmp)
-//   }
-// end
+rule "Update Temperature Min- and Max values"
+when
+  Item InnenTemperatur changed
+then
+  var Number Min
+  var Number Max
+  var String tmp
+  var SimpleDateFormat df = new SimpleDateFormat( "HH:mm" )
+
+  if (InnenTemperatur.state instanceof DecimalType) {
+    df = new SimpleDateFormat( "HH:mm" )
+    Min = InnenTemperatur.minimumSince(now.toDateMidnight, "rrd4j").state as DecimalType
+    tmp = (Math::round(Min.floatValue*10.0)/10.0) + " °C (" + df.format(InnenTemperatur.minimumSince(now.toDateMidnight, "rrd4j").timestamp) + ")"
+    postUpdate(InnenTemperatur_Min_Formatted, tmp)
+    Max = InnenTemperatur.maximumSince(now.toDateMidnight, "rrd4j").state as DecimalType
+    tmp = (Math::round(Max.floatValue*10.0)/10.0) + " °C (" + df.format(InnenTemperatur.maximumSince(now.toDateMidnight, "rrd4j").timestamp) + ")"
+    postUpdate(InnenTemperatur_Max_Formatted, tmp)
+  }
+end
 
 // rule "Run often"
 // when
